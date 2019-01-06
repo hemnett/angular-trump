@@ -7,4 +7,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-trump';
+
+  public callback(color: string){
+    console.log(color);
+  }
 }
