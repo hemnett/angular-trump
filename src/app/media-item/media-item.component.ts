@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { delegateToClassInput } from '@angular/core/src/render3/instructions';
 
 @Component({
   selector: 'app-media-item',
@@ -7,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MediaItemComponent implements OnInit {
 
-  name = 'The Redemption';
+  @Input() mediaItem;
 
-  wasWatched() {
-    return true;
+  @Output() delete = new EventEmitter;
+
+  onDelete() {
+    console.log('DELETED');
+    this.delete.emit(this.mediaItem);
   }
 
   constructor() { }

@@ -5,12 +5,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShinyButtonComponent } from './shiny-button/shiny-button.component';
 import { MediaItemComponent } from './media-item/media-item.component';
+import { MediaItemListComponent } from './media-item-list/media-item-list.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       ShinyButtonComponent,
-      MediaItemComponent
+      MediaItemComponent,
+      MediaItemListComponent
    ],
    imports: [
       BrowserModule,
