@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
-import { constants } from 'os';
+import { MediaItemService } from '../media-item.service';
 
 @Component({
   selector: 'app-media-item-form',
@@ -11,7 +11,9 @@ export class MediaItemFormComponent implements OnInit {
 
   form;
 
-  constructor(private formBuilder: FormBuilder) {}
+  constructor(
+    private formBuilder: FormBuilder,
+    private mediaItemService: MediaItemService) {}
 
   yearValidator(control) {
     if (control.value.trim().length === 0 ) {
@@ -31,7 +33,7 @@ export class MediaItemFormComponent implements OnInit {
   }
 
   onSubmit(mediaItem) {
-    console.log(mediaItem);
+    this.mediaItemService.add(mediaItem);
   }
 
   ngOnInit() {
