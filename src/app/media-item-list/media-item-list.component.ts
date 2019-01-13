@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CategoryListPipe } from '../category-list.pipe';
 
 @Component({
   selector: 'app-media-item-list',
