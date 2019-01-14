@@ -10,11 +10,11 @@ export class FavoriteDirective {
 
   @HostListener('mouseenter') onMouseEnterF() {
     this.hovering = true;
-  };
+  }
 
   @HostListener('mouseleave') onMouseLeaveF() {
     this.hovering = false;
-  };
+  }
 
   @Input() set appFavorite(value) {
     this.isFavorite = value;

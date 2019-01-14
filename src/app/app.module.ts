@@ -12,6 +12,9 @@ import { CategoryListPipe } from './category-list.pipe';
 import { MediaItemFormComponent } from './media-item-form/media-item-form.component';
 import { MediaItemService } from './media-item.service';
 
+const lookupLists = {
+   mediums: ['Movies', 'Series', 'Trailers']
+};
 
 @NgModule({
    declarations: [
@@ -29,7 +32,8 @@ import { MediaItemService } from './media-item.service';
       AppRoutingModule
    ],
    providers: [
-      MediaItemService
+      MediaItemService,
+      { provide: 'lookupListToken', useValue: lookupLists }
    ],
    bootstrap: [
       AppComponent
