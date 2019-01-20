@@ -13,6 +13,11 @@ import { MediaItemFormComponent } from './media-item-form/media-item-form.compon
 import { MediaItemService } from './media-item.service';
 import { lookupListToken, lookupLists } from './providers';
 
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from './in-memory.data.serice';
+import { InMemoryTestComponent } from './in-memory-test/in-memory-test.component';
+
 @NgModule({
    declarations: [
       AppComponent,
@@ -21,12 +26,21 @@ import { lookupListToken, lookupLists } from './providers';
       MediaItemListComponent,
       FavoriteDirective,
       CategoryListPipe,
-      MediaItemFormComponent
+      MediaItemFormComponent,
+      InMemoryTestComponent
    ],
    imports: [
       BrowserModule,
       ReactiveFormsModule,
-      AppRoutingModule
+      AppRoutingModule,
+      HttpClientModule,
+      HttpClientInMemoryWebApiModule.forRoot(
+         InMemoryDataService, {
+           dataEncapsulation: false,
+           passThruUnknownUrl: true,
+           put204: false // return entity after PUT/update
+         }
+       )
    ],
    providers: [
       MediaItemService,

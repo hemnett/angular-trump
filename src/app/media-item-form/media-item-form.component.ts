@@ -35,9 +35,9 @@ export class MediaItemFormComponent implements OnInit {
     }
   }
 
-  onSubmit(mediaItem) {
-    this.mediaItemService.add(mediaItem);
-  }
+  // onSubmit(mediaItem) {
+  //   this.mediaItemService.add(mediaItem);
+  // }
 
   ngOnInit() {
     this.form = this.formBuilder.group({
