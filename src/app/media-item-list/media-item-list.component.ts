@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryListPipe } from '../category-list.pipe';
 import { MediaItemService } from '../media-item.service';
 
-import { HttpClient } from '@angular/common/http';
-import { Observable, VirtualTimeScheduler } from 'rxjs';
+
 
 @Component({
   selector: 'app-media-item-list',
@@ -18,11 +16,18 @@ test;
 constructor(private mediaItemService: MediaItemService) { }
 
   ngOnInit() {
+    this.mediaItemService.get2().subscribe(
+      (value) => { console.log('Received value TEST: ', value); this.test = value; },
+      (error) => { console.log('Error!! TEST', error); },
+      () => { console.log('End of values TEST'); }
+    );
+
     this.mediaItemService.get().subscribe(
       (value) => { console.log('Received value: ', value); this.mediaItems = value; },
       (error) => { console.log('Error!!', error); },
       () => { console.log('End of values'); }
     );
+
   }
 
   // onMediaItemDelete(mediaItem) {

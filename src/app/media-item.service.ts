@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { map } from 'rxjs/operators';
 
-export interface Media {
+export interface MediaItem {
   id: number;
   name: string;
   medium: string;
@@ -12,8 +12,8 @@ export interface Media {
   isFavorite: boolean;
 }
 
-interface MediaResponse {
-  medias: Media[];
+interface MediaItemsResponse {
+  medias: MediaItem[];
 }
 
 @Injectable()
@@ -21,12 +21,22 @@ export class MediaItemService {
 
   private mediaItemsUrl = 'api/medias';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient) {}
 
-   }
 
   get() {
-    return this.http.get<MediaResponse>(this.mediaItemsUrl);
+    return this.http.get<MediaItemsResponse>(this.mediaItemsUrl);
+  }
+
+  // probujemy zwrocic tablice a nie observables przy pomocy funkcji map z RxJS
+  get2() {
+    return this.http.get<MediaItemsResponse>(this.mediaItemsUrl);
+    // .pipe(
+    //   map( (response: MediaItemsResponse) => {
+    //     return response.medias;
+    //   }
+    //   )
+    // );
   }
 
 
