@@ -11,23 +11,27 @@ import { MediaItemService } from '../media-item.service';
 export class MediaItemListComponent implements OnInit {
 
 mediaItems;
+medium = 'Series';
 test;
 
 constructor(private mediaItemService: MediaItemService) { }
 
   ngOnInit() {
-    this.mediaItemService.get2().subscribe(
-      (value) => { console.log('Received value TEST: ', value); this.test = value; },
-      (error) => { console.log('Error!! TEST', error); },
-      () => { console.log('End of values TEST'); }
-    );
+    this.getMediaItems(this.medium);
+    // this.mediaItemService.get2().subscribe(
+    //   (value) => { console.log('Received value TEST: ', value); this.test = value; },
+    //   (error) => { console.log('Error!! TEST', error); },
+    //   () => { console.log('End of values TEST'); }
+    // );
+  }
 
-    this.mediaItemService.get().subscribe(
+  getMediaItems(medium) {
+    this.medium = medium;
+    this.mediaItemService.get2(this.medium).subscribe(
       (value) => { console.log('Received value: ', value); this.mediaItems = value; },
       (error) => { console.log('Error!!', error); },
       () => { console.log('End of values'); }
     );
-
   }
 
   // onMediaItemDelete(mediaItem) {

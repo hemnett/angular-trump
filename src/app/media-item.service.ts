@@ -28,9 +28,16 @@ export class MediaItemService {
     return this.http.get<MediaItemsResponse>(this.mediaItemsUrl);
   }
 
+  get2(medium) {
+    const getOptions = {
+      params: { medium }
+    };
+    return this.http.get<MediaItemsResponse>(this.mediaItemsUrl, getOptions);
+  }
+
   // probujemy zwrocic tablice a nie observables przy pomocy funkcji map z RxJS
-  get2() {
-    return this.http.get<MediaItemsResponse>(this.mediaItemsUrl);
+  // get2() {
+  //   return this.http.get<MediaItemsResponse>(this.mediaItemsUrl);
     // .pipe(
     //   map( (response: MediaItemsResponse) => {
     //     return response.medias;
@@ -38,6 +45,8 @@ export class MediaItemService {
     //   )
     // );
   }
+
+
 
 
   // add(mediaItem)  {
@@ -49,4 +58,4 @@ export class MediaItemService {
   //   if (index >= 0) {
   //     this.mediaItems.splice(index, 1);
   //   }
-}
+// }
