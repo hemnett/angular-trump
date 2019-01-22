@@ -21,19 +21,14 @@ export class MediaItemService {
 
   private mediaItemsUrl = 'api/medias';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
 
-  // getMediaItems(): Observable<Media[]> {
-  //   return this.http.get<Media[]>(this.mediaItemsUrl);
-  // }
+   }
 
   get() {
-    return this.http.get<MediaResponse>(this.mediaItemsUrl).pipe(
-      map( (response: MediaResponse) => {
-        return response.medias;
-      })
-    );
+    return this.http.get<MediaResponse>(this.mediaItemsUrl);
   }
+
 
   // add(mediaItem)  {
   //   this.mediaItems.push(mediaItem);
