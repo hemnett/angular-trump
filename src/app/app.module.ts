@@ -16,6 +16,7 @@ import { lookupListToken, lookupLists } from './providers';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
 import { InMemoryDataService } from './in-memory.data.serice';
+
 import { InMemoryTestComponent } from './in-memory-test/in-memory-test.component';
 
 @NgModule({
@@ -35,11 +36,7 @@ import { InMemoryTestComponent } from './in-memory-test/in-memory-test.component
       AppRoutingModule,
       HttpClientModule,
       HttpClientInMemoryWebApiModule.forRoot(
-         InMemoryDataService, {
-           dataEncapsulation: false,
-           passThruUnknownUrl: true,
-           put204: false // return entity after PUT/update
-         }
+         InMemoryDataService, { delay:  100 }
        )
    ],
    providers: [

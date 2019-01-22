@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-
 import { Injectable } from '@angular/core';
+import { map } from 'rxjs/operators';
 
-export interface MediaItem {
+export interface Media {
   id: number;
   name: string;
   medium: string;
@@ -14,28 +12,27 @@ export interface MediaItem {
   isFavorite: boolean;
 }
 
-@Injectable({
-  providedIn: 'root'
-})
-export class MediaItemService implements OnInit {
+interface MediaResponse {
+  medias: Media[];
+}
 
-  private medias: MediaItem[];
+@Injectable()
+export class MediaItemService {
 
   private mediaItemsUrl = 'api/medias';
 
   constructor(private http: HttpClient) { }
 
-  ngOnInit() {
-    this.getMediaItems().subscribe(
-      data => this.medias = data);
-  }
-
-  getMediaItems(): Observable<MediaItem[]> {
-    return this.http.get<MediaItem[]>(this.mediaItemsUrl);
-  }
+  // getMediaItems(): Observable<Media[]> {
+  //   return this.http.get<Media[]>(this.mediaItemsUrl);
+  // }
 
   get() {
-    return this.medias;
+    return this.http.get<MediaResponse>(this.mediaItemsUrl).pipe(
+      map( (response: MediaResponse) => {
+        return response.medias;
+      })
+    );
   }
 
   // add(mediaItem)  {
