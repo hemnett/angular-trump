@@ -1,6 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { map } from 'rxjs/operators';
+import { throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+
+const cudOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
 
 export interface MediaItem {
   id: number;
@@ -35,27 +38,29 @@ export class MediaItemService {
     return this.http.get<MediaItemsResponse>(this.mediaItemsUrl, getOptions);
   }
 
-  // probujemy zwrocic tablice a nie observables przy pomocy funkcji map z RxJS
-  // get2() {
-  //   return this.http.get<MediaItemsResponse>(this.mediaItemsUrl);
-    // .pipe(
-    //   map( (response: MediaItemsResponse) => {
-    //     return response.medias;
-    //   }
-    //   )
-    // );
+  add(mediaItem)  {
+    console.log('Wywołuję POST mediaItemService', mediaItem);
+    return this.http.post(this.mediaItemsUrl, mediaItem, cudOptions ).pipe(
+      catchError(this.handleError)
+      );
+  }
+
+  delete(mediaItem) {
+    return this.http.delete(`${this.mediaItemsUrl}/${mediaItem.id}`, cudOptions ).pipe(
+      catchError(this.handleError)
+    );
+    }
+
+  private handleError (error: any) {
+    // In a real world app, we might send the error to remote logging infrastructure
+    // and reformat for user consumption
+    console.error(error); // log to console instead
+    return throwError(error);
+  }
+
   }
 
 
 
 
-  // add(mediaItem)  {
-  //   this.mediaItems.push(mediaItem);
-  // }
 
-  // delete(mediaItem) {
-  //   const index = this.mediaItems.indexOf(mediaItem);
-  //   if (index >= 0) {
-  //     this.mediaItems.splice(index, 1);
-  //   }
-// }

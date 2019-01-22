@@ -11,7 +11,7 @@ import { MediaItemService } from '../media-item.service';
 export class MediaItemListComponent implements OnInit {
 
 mediaItems;
-medium = 'Series';
+medium = 'Movies';
 test;
 
 constructor(private mediaItemService: MediaItemService) { }
@@ -34,7 +34,9 @@ constructor(private mediaItemService: MediaItemService) { }
     );
   }
 
-  // onMediaItemDelete(mediaItem) {
-  //   this.mediaItemService.delete(mediaItem);
-  //  }
+  onMediaItemDelete(mediaItem) {
+    this.mediaItemService.delete(mediaItem).subscribe( () => {
+      this.getMediaItems(this.medium);
+    });
+   }
 }
