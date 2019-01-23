@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MediaItemService } from '../media-item.service';
 
 
-
 @Component({
   selector: 'app-media-item-list',
   templateUrl: './media-item-list.component.html',
@@ -11,7 +10,7 @@ import { MediaItemService } from '../media-item.service';
 export class MediaItemListComponent implements OnInit {
 
 mediaItems;
-medium = 'Movies';
+medium = '';
 test;
 
 constructor(private mediaItemService: MediaItemService) { }

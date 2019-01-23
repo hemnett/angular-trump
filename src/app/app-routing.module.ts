@@ -1,18 +1,21 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-// import { FavoriteDirective } from './favorite.directive';
 
-const routes: Routes = [];
+import { MediaItemFormComponent } from './media-item-form/media-item-form.component';
+import { MediaItemListComponent } from './media-item-list/media-item-list.component';
+
+const appRoutes: Routes = [
+   { path: 'add', component: MediaItemFormComponent },
+   { path: ':medium', component: MediaItemListComponent },
+   { path: '', pathMatch: 'full', redirectTo: 'all'}
+ ];
 
 @NgModule({
    imports: [
-      RouterModule.forRoot(routes)
+      RouterModule.forRoot(appRoutes)
    ],
    exports: [
       RouterModule
-   // ],
-   // declarations: [
-   //    FavoriteDirective
    ]
 })
 export class AppRoutingModule { }

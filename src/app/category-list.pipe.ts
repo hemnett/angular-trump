@@ -7,12 +7,16 @@ export class CategoryListPipe implements PipeTransform {
 
   transform(mediaItems: any, args?: any): any {
     const categories = [];
-    mediaItems.forEach(mediaItem => {
-      if (categories.indexOf(mediaItem.category) <= -1) {
-        categories.push(mediaItem.category);
-      }
-    });
-    return categories.join(', ');
+    if (mediaItems) {
+      mediaItems.forEach(mediaItem => {
+        if (categories.indexOf(mediaItem.category) <= -1) {
+          categories.push(mediaItem.category);
+        }
+      });
+      return categories.join(', ');
+    } else {
+      return 1;
+          }
   }
 
 }
