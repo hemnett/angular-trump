@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+
 import { MediaItemService } from '../media-item.service';
 
 
@@ -13,10 +15,20 @@ mediaItems;
 medium = '';
 test;
 
-constructor(private mediaItemService: MediaItemService) { }
+constructor(
+  private mediaItemService: MediaItemService,
+  private activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.getMediaItems(this.medium);
+    this.activatedRoute.params.subscribe(
+      params => {
+        let medium = params['medium'];
+        if(medium.toLowerCase() === 'all') {
+          medium = '';
+        }
+        this.getMediaItems(medium);
+      });
+    // this.getMediaItems(this.medium);
     // this.mediaItemService.get2().subscribe(
     //   (value) => { console.log('Received value TEST: ', value); this.test = value; },
     //   (error) => { console.log('Error!! TEST', error); },
